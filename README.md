@@ -66,8 +66,6 @@ python src/api_main/main.py # api mockada
 ```
 
 
-Também organizei a estrutura pensando em facilitar os testes e a integração com outros ambientes. Usei pytest nos testes e deixei o projeto pronto pra rodar com Docker, o que ajuda na instalação e evita problemas com dependências.
-
 ## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
