@@ -1,4 +1,4 @@
-# Precatory Management System
+# Template
 
 Este projeto é uma API com frontend integrado. Desenvolvido com **Python**, **Flask**, **SQLAlchemy**, **JWT**, **Tailwind CSS** com **Alembic** para versionamento e arquitetura baseada em **Clean Architecture**.
 
