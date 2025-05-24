@@ -1,4 +1,4 @@
-from flask import json, jsonify, make_response, request
+from flask import json, jsonify, make_response
 from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.usecases.users.login_user_usecase import LoginUserUseCase
 from src.api_main.infraestructure.database.engine import get_db
@@ -52,3 +52,4 @@ def get_user(data):
                 "message": e.message
             }
             return make_response(json.dumps(error_response), e.status_code)
+        

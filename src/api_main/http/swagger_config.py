@@ -1,5 +1,5 @@
 from flask_restx import Api
-from src.api_main.interface.http.routes.user_routes import user_ns 
+from api_main.http.routes.back_end_routes import user_ns
 
 authorizations = {
     'jwt': {

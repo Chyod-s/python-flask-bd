@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
+from src.api_main.infraestructure.handler.jwt_handler import validate_token
 from src.api_main.utils.login_required_util import login_required
-from src.api_main.utils.auth_utils import validate_jwt_token
+
 
 frontend_bp = Blueprint('frontend', __name__)
 
@@ -9,7 +10,7 @@ def home():
     token = request.cookies.get('auth_token')
     print(f"Token recebido no /home: {token}")
     
-    if token and validate_jwt_token(token):
+    if token and validate_token(token):
         print("Token válido, redirecionando para dashboard")
         return redirect(url_for('frontend.dashboard'))
     
