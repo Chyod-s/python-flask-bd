@@ -22,36 +22,6 @@ def logout():
     response.set_cookie('auth_token', '', max_age=0)
     return response
 
-@frontend_bp.route('/dashboard')
-@login_required
-def dashboard():
-    return render_template('pages/dashboard.html')
-
-@frontend_bp.route('/credor')
-@login_required
-def credor():
-    return render_template('pages/credor.html')
-
-@frontend_bp.route('/documentos')
-@login_required
-def documentos():
-    return render_template('pages/documentos_pessoal.html')
-
-@frontend_bp.route('/precatorio')
-@login_required
-def precatorio():
-    return render_template('pages/precatorio.html')
-
-@frontend_bp.route('/certidao')
-@login_required
-def certidao():
-    return render_template('pages/certidao.html')
-
-@frontend_bp.route('/consulta_agregada')
-@login_required
-def consulta_agregada():
-    return render_template('pages/consulta_agregada.html')
-
 @frontend_bp.route('/register')
 def register():
     return render_template('pages/register.html')

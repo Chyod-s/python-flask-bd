@@ -3,7 +3,7 @@ import os
 class Config:
     DEBUG = True
     HOST = '0.0.0.0'
-    PORT = 5000
+    PORT = 5055
 
     JWT_SECRET = os.getenv('JWT_SECRET')
     JWT_ALGORITHM = 'HS256'
