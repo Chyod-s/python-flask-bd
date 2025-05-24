@@ -23,7 +23,12 @@ app = Flask(__name__,
             static_folder='static',
             template_folder='templates')
 
-CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "http://localhost:5000"}})
+app.config.from_object(Config)
+Config.validate()
+
+CORS(app=app,
+    CORS_SUPPORTS_CREDENTIALS=app.config['CORS_SUPPORTS_CREDENTIALS'],
+    resources=app.config['CORS_RESOURCES'])
 
 app.secret_key = secret_key
 
