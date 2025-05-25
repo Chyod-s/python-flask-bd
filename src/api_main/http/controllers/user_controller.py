@@ -8,7 +8,7 @@ def register_user(data):
     db = next(get_db())
     try:
         use_case = RegisterUserUseCase(db)
-        result = use_case.execute(data.get('user_name', ''), data.get('password', ''))
+        result = use_case.execute(data.get('user_name'), data.get('email') , data.get('password'), data.get('confirm_password'), data.get('name'))
 
         response = SuccessAPIResponse("Usuário criado com sucesso!", result, 201)
         

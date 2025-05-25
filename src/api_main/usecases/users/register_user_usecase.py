@@ -7,14 +7,17 @@ class RegisterUserUseCase:
     def __init__(self, db):
         self.db = db
 
-    def execute(self, user_name: str, password: str):
+    def execute(self, user_name: str, email: str, password: str, confirm_password: str, name: str | None):
         if not user_name or not password:
             raise CustomAPIException("Informe um nome de usuário e uma senha válidos.", 422)
 
         if User.user_exists(self.db, user_name):
             raise CustomAPIException("Usuário já existe.", 422)
+        
+        if password != confirm_password:
+            raise CustomAPIException("As senhas não coincidem.", 422)
 
-        new_user = User(user_name=user_name, password=password)
+        new_user = User(user_name=user_name, email=email, password=password, confirm_password=confirm_password, name=name)
 
         self.db.add(new_user)
         self.db.commit()

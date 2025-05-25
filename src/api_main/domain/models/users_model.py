@@ -9,12 +9,18 @@ class User(BaseModel):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_name = Column(String, nullable=False, unique=True)
+    email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
+    confirm_password = Column(String, nullable=False)
+    name = Column(String, nullable=True)
 
-    def __init__(self, user_name: str, password: str):
+    def __init__(self, user_name: str, email: str, password: str, confirm_password: str, name: str | None):
         self.user_name = user_name
-        self.password = generate_password_hash(password or "")
-
+        self.email = email
+        self.password = generate_password_hash(password)
+        self.confirm_password = generate_password_hash(confirm_password)
+        self.name = name
+    
     @classmethod
     def get_user(cls, db, user_name: str):
         try:
@@ -31,4 +37,3 @@ class User(BaseModel):
     @classmethod
     def user_exists(cls, db, user_name: str):
         return db.query(cls).filter_by(user_name=user_name).first() is not None
-        
