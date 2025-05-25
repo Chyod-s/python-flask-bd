@@ -1,3 +1,4 @@
+from src.api_main.utils.exceptions import CustomAPIException
 from src.api_main.domain.models.base_model import BaseModel
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
@@ -22,13 +23,22 @@ class User(BaseModel):
         self.name = name
     
     @classmethod
-    def get_user(cls, db, user_name: str):
+    def get_user(cls, db, user_name: str | None = None, email: str | None = None):
         try:
-            user = db.query(cls).filter_by(user_name=user_name).first()
+            if not user_name and not email:
+                raise CustomAPIException("Informe um: usuário ou e-mail.", 422)
+
+            if user_name:
+                user = db.query(cls).filter_by(user_name=user_name).first()
+            else:
+                user = db.query(cls).filter_by(email=email).first()
+
             return user
+
         except Exception as e:
-            print(f"Error retrieving user: {e}")
+            print(f"Erro ao buscar usuário: {e}")
             return None
+
 
     @classmethod
     def check_password(cls, stored_password: str, password: str):

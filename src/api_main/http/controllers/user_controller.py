@@ -22,7 +22,7 @@ def login_user(data):
 
     try:
         use_case = LoginUserUseCase(db)
-        result = use_case.execute(data.get('user_name'), data.get('password'))
+        result = use_case.execute(data.get('user_name_email'), data.get('password'))
         
         response = SuccessAPIResponse("Usuário autenticado com sucesso!", result)
 
