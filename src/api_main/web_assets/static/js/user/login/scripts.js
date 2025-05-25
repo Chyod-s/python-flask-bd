@@ -26,10 +26,11 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
             if (responseData?.data?.user_name) {
                 sessionStorage.setItem('user_name', responseData.data.user_name);
                 sessionStorage.setItem('auth_token', responseData.data.token);
+                sessionStorage.setItem('csrf_token', responseData.data.csrf_token);
             }
 
             setTimeout(() => {
-                window.location.href = '/dashboard';
+                window.location.href = '/example';
             }, 1000);
         } else {
             msgEl.style.color = 'red';
