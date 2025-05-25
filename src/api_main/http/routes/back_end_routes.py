@@ -1,5 +1,5 @@
 from flask_restx import Namespace, Resource
-from src.api_main.http.swagger import register_user_parser, login_user_parser
+from src.api_main.http.swagger_parse import register_user_parser, login_user_parser
 from src.api_main.http.controllers.user_controller import create_user, get_user
 from src.api_main.http.swagger_config import api
 from src.api_main.http.swagger_models import register_models
