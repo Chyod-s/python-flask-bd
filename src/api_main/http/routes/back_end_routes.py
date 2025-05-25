@@ -20,6 +20,10 @@ class LoginUserResource(Resource):
         return response
 
 @user_ns.route('/register')
+@user_ns.response(201, 'Usuário criado com sucesso', success_model)
+@user_ns.response(400, 'Requisição inválida', error_model)
+@user_ns.response(422, 'Erro de validação', error_model)
+@user_ns.response(500, 'Erro interno do servidor', error_model)
 class CreateUserResource(Resource):
     @user_ns.expect(register_user_parser)
     def post(self):
