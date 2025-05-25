@@ -34,19 +34,7 @@ def get_user(data):
                 }
             }
         
-        response = make_response(jsonify(response_data), 200)
-
-        response.set_cookie(
-            key='auth_token',
-            value=result['token'],
-            httponly=True,
-            secure=False,  
-            samesite='Lax',
-            max_age=3600
-        )
-            
-        response.headers['Content-Type'] = 'application/json'
-        return response
+        return  make_response(jsonify(response_data), 200)
         
     except CustomAPIException as e:
             error_response = {
