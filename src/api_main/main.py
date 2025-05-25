@@ -20,8 +20,8 @@ load_dotenv()
 secret_key = os.getenv("SECRET_KEY")
 
 app = Flask(__name__,
-            static_folder='static',
-            template_folder='templates')
+            static_folder='web_assets/static',
+            template_folder='web_assets/templates')
 
 app.config.from_object(Config)
 Config.validate()
