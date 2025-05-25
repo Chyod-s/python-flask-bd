@@ -1,13 +1,14 @@
+from typing import Any
 from src.api_main.infraestructure.handler.jwt_handler import generate_token
 from src.api_main.utils.exceptions import CustomAPIException
 from src.api_main.domain.models.users_model import User
 from flask_jwt_extended import get_csrf_token
 
-class RegisterUserUseCase:
+class RegisterUserUseCase():
     def __init__(self, db):
         self.db = db
 
-    def execute(self, user_name: str, email: str, password: str, confirm_password: str, name: str | None):
+    def execute(self, user_name: str, email: str, password: str, confirm_password: str, name: str | None) -> dict[str, Any]:
         if not user_name or not password:
             raise CustomAPIException("Informe um nome de usuário e uma senha válidos.", 422)
 
