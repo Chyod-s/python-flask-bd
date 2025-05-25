@@ -11,8 +11,6 @@ class User(BaseModel):
     user_name = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
 
-    creditor = relationship("Creditor", back_populates="user")
-
     def __init__(self, user_name: str, password: str):
         self.user_name = user_name
         self.password = generate_password_hash(password or "")

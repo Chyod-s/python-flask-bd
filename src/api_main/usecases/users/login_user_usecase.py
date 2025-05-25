@@ -1,8 +1,7 @@
-from jwt import decode
 from src.api_main.infraestructure.handler.jwt_handler import generate_token, decode_token
 from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.domain.models.users_model import User
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_csrf_token
 
 class LoginUserUseCase:
     def __init__(self, db):
@@ -20,10 +19,12 @@ class LoginUserUseCase:
             raise CustomAPIException("Senha inválida.", 422)
 
         token = generate_token(user.id) 
-      
+        csrf_token = get_csrf_token(token)
+        
         User.att_updated_at(self.db, user)
         
         return {
             "user_name": user.user_name,
+            "csrf_token": csrf_token,
             "token": token
         }

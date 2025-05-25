@@ -1,6 +1,8 @@
+import string
+from src.api_main.infraestructure.handler.jwt_handler import generate_token
 from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.domain.models.users_model import User
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_csrf_token
 
 class CreateUserUseCase:
     def __init__(self, db):
@@ -19,5 +21,11 @@ class CreateUserUseCase:
         self.db.commit()
         self.db.refresh(new_user)
 
-        token = create_access_token(identity=str(new_user.id)) 
-        return {"token": token, "user_id": new_user.id}
+        token = generate_token(user_id=new_user.id) # type: ignore
+        csrf_token = get_csrf_token(token)
+        
+        return {
+            "token": token,
+            "csrf_token": csrf_token,
+            "user_id": new_user.id
+            }

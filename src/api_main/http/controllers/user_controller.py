@@ -1,5 +1,4 @@
 from flask import json, jsonify, make_response
-from src.api_main.utils.jwt_utils import extract_csrf_token
 from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.usecases.users.login_user_usecase import LoginUserUseCase
 from src.api_main.infraestructure.database.engine import get_db
@@ -24,14 +23,13 @@ def get_user(data):
     try:
         use_case = LoginUserUseCase(db)
         result = use_case.execute(data.get('user_name'), data.get('password'))
-
-        csrf_token = extract_csrf_token(result['token'])
         
         response_data = {
                 "status": "success",
                 "message": "Usuário encontrado com sucesso!",
                 "data": {
                     "user_name": result["user_name"],
+                    "csrf_token": result["csrf_token"],
                     "token": result["token"]
                 }
             }
@@ -46,9 +44,6 @@ def get_user(data):
             samesite='Lax',
             max_age=3600
         )
-        
-        if csrf_token:
-            response.headers['X-CSRF-Token'] = csrf_token
             
         response.headers['Content-Type'] = 'application/json'
         return response
