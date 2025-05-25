@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:css": "npx @tailwindcss/cli -i ./src/api_main/static/styles/tailwind.css -o ./src/api_main/static/styles/output.css --watch",
+    "build:css": "npx @tailwindcss/cli -i ./src/api_main/web_assets/static/styles/tailwind.css -o ./src/api_main/web_assets/static/styles/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

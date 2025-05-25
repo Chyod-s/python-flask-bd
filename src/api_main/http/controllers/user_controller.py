@@ -1,4 +1,3 @@
-from flask import json, jsonify, make_response
 from src.api_main.utils.exceptions import CustomAPIException
 from src.api_main.utils.sucess import SuccessAPIResponse
 from src.api_main.usecases.users.login_user_usecase import LoginUserUseCase
@@ -30,9 +29,5 @@ def login_user(data):
         return response.to_dict(), response.status_code
             
     except CustomAPIException as e:
-            error_response = {
-                "status": "error",
-                "message": e.message
-            }
-            return make_response(json.dumps(error_response), e.status_code)
+            return e.to_dict(), e.status_code
         
