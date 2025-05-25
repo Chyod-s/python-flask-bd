@@ -6,10 +6,10 @@ from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
 from src.api_main.infraestructure.database import init_db, engine
 from src.api_main.config import Config
-from src.api_main.http.swagger_config import user_ns
 from src.api_main.http.swagger_config import api
 from flask_cors import CORS
 from src.api_main.http.routes.front_end_routes import frontend_bp
+from src.api_main.http.routes import back_end_routes
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
@@ -33,8 +33,6 @@ CORS(app=app,
 app.secret_key = secret_key
 
 app.config.from_object(Config)
-
-api.add_namespace(user_ns)
 
 api.init_app(app)
 

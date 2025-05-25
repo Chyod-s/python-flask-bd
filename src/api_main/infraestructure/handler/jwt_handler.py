@@ -1,4 +1,5 @@
 import uuid
+from flask import request
 import jwt
 from datetime import datetime, timedelta, timezone
 from src.api_main.config import Config
@@ -44,3 +45,10 @@ def validate_token(token: str):
     except jwt.InvalidTokenError as e:
         print(f"Erro: Token inválido: {e}")
         return None
+
+def validate_csrf(token_payload):
+    csrf_token = token_payload.get('csrf')
+    csrf_header = request.headers.get('X-CSRF-Token')
+    if not csrf_token or not csrf_header or csrf_token != csrf_header:
+        raise Exception('Falha na validação CSRF')
+    

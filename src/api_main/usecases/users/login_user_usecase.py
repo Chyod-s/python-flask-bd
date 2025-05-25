@@ -20,7 +20,6 @@ class LoginUserUseCase:
             raise CustomAPIException("Senha inválida.", 422)
 
         token = generate_token(user.id) 
-        is_true = decode_token(token)
       
         User.att_updated_at(self.db, user)
         

@@ -1,5 +1,4 @@
 from flask_restx import Api
-from src.api_main.http.routes.back_end_routes import user_ns
 
 authorizations = {
     'jwt': {
@@ -24,5 +23,3 @@ api = Api(
     authorizations=authorizations,
     security='jwt'
 )
-
-api.add_namespace(user_ns, path="/api")
