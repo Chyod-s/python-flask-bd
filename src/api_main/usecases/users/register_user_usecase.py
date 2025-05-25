@@ -1,5 +1,5 @@
 from src.api_main.infraestructure.handler.jwt_handler import generate_token
-from src.api_main.domain.error.exceptions import CustomAPIException
+from src.api_main.utils.exceptions import CustomAPIException
 from src.api_main.domain.models.users_model import User
 from flask_jwt_extended import get_csrf_token
 

@@ -1,5 +1,6 @@
 from flask import json, jsonify, make_response
-from src.api_main.domain.error.exceptions import CustomAPIException
+from src.api_main.utils.exceptions import CustomAPIException
+from src.api_main.utils.sucess import SuccessAPIResponse
 from src.api_main.usecases.users.login_user_usecase import LoginUserUseCase
 from src.api_main.infraestructure.database.engine import get_db
 from src.api_main.usecases.users.register_user_usecase import RegisterUserUseCase
@@ -10,9 +11,9 @@ def register_user(data):
         use_case = RegisterUserUseCase(db)
         result = use_case.execute(data.get('user_name', ''), data.get('password', ''))
 
-        return {"status": "success",
-                        "message": "Usuário criado com sucesso!",
-                        "data": result}, 201
+        response = SuccessAPIResponse("Usuário criado com sucesso!", result, 201)
+        
+        return response.to_dict(), response.status_code
     
     except CustomAPIException as e:
         return e.to_dict(), e.status_code
@@ -24,18 +25,10 @@ def login_user(data):
         use_case = LoginUserUseCase(db)
         result = use_case.execute(data.get('user_name'), data.get('password'))
         
-        response_data = {
-                "status": "success",
-                "message": "Usuário encontrado com sucesso!",
-                "data": {
-                    "user_name": result["user_name"],
-                    "csrf_token": result["csrf_token"],
-                    "token": result["token"]
-                }
-            }
-        
-        return  make_response(jsonify(response_data), 200)
-        
+        response = SuccessAPIResponse("Usuário autenticado com sucesso!", result)
+
+        return response.to_dict(), response.status_code
+            
     except CustomAPIException as e:
             error_response = {
                 "status": "error",

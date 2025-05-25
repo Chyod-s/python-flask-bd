@@ -5,7 +5,6 @@ class CustomAPIException(Exception):
         self.status_code = status_code
 
     def to_dict(self):
-        """Retorna a exceção como um dicionário para resposta JSON."""
         return {
             "status": "error",
             "message": self.message
