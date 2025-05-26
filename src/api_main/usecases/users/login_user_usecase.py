@@ -29,8 +29,10 @@ class LoginUserUseCase():
         
         User.att_updated_at(self.db, user)
         
+        user_name = "".join(user.name) if user.name is not None else user.user_name
+        
         return {
-            "user_name": user.user_name,
+            "user_name": user_name,
             "csrf_token": csrf_token,
             "token": token
         }

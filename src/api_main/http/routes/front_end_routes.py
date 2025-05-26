@@ -8,11 +8,10 @@ frontend_bp = Blueprint('frontend', __name__)
 @frontend_bp.route('/home')
 def home():
     token = request.cookies.get('auth_token')
-    print(f"Token recebido no /home: {token}")
     
     if token and validate_token(token):
         print("Token válido, redirecionando para dashboard")
-        return redirect(url_for('frontend.dashboard'))
+        return redirect(url_for('frontend.example'))
     
     print("Token inválido ou não encontrado, redirecionando para login")
     return render_template('pages/login.html')
@@ -26,3 +25,8 @@ def logout():
 @frontend_bp.route('/register')
 def register():
     return render_template('pages/register.html')
+
+@frontend_bp.route('/example')
+@login_required
+def example():
+    return render_template('pages/example.html')
