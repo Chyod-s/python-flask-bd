@@ -4,7 +4,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     const username = e.target.username.value;
     const password = e.target.password.value;
 
-    const data = { user_name: username, password: password };
+    const data = { user_name_email: username, password: password };
     const msgEl = document.getElementById('message');
 
     try {

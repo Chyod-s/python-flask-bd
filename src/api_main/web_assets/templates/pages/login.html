@@ -1,4 +1,4 @@
-{% extends "web_assets/layouts/base.html" %} {% block title %}Login - Mercatório{% endblock
+{% extends "layouts/base.html" %} {% block title %}Login - Mercatório{% endblock
 %} {% block content %}
 <div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md text-black">
   <div class="flex items-center gap-64 mb-2">
@@ -44,6 +44,6 @@
   </form>
   <p id="message" class="mt-4 text-center text-red-600"></p>
 </div>
-<script src="./../../static/js/user/login/scripts.js"></script>
+<script src="{{ url_for('static', filename='js/user/login/scripts.js') }}"></script>
 <script src="./../../static/js/base/scripts.js"></script>
 {% endblock %}

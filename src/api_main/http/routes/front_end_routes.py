@@ -13,7 +13,6 @@ def home():
         print("Token válido, redirecionando para dashboard")
         return redirect(url_for('frontend.example'))
     
-    print("Token inválido ou não encontrado, redirecionando para login")
     return render_template('pages/login.html')
 
 @frontend_bp.route('/logout')

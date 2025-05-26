@@ -15,6 +15,16 @@
       },
       "args": ["run", "--no-debugger", "--no-reload"],
       "jinja": true
+    },
+    {
+      "name": "Debug Frontend JS",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://127.0.0.1:5000",
+      "webRoot": "${workspaceFolder}/src/api_main/static",
+      "pathMapping": {
+        "/static": "${workspaceFolder}/src/api_main/static"
+      }
     }
   ]
 }
