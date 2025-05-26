@@ -1,3 +1,4 @@
+from flask import jsonify, make_response
 from src.api_main.utils.exceptions import CustomAPIException
 from src.api_main.utils.sucess import SuccessAPIResponse
 from src.api_main.usecases.users.login_user_usecase import LoginUserUseCase
@@ -24,9 +25,24 @@ def login_user(data):
         use_case = LoginUserUseCase(db)
         result = use_case.execute(data.get('user_name_email'), data.get('password'))
         
-        response = SuccessAPIResponse("Usuário autenticado com sucesso!", result)
+        response_body = SuccessAPIResponse("Usuário autenticado com sucesso!", result).to_dict()
 
-        return response.to_dict(), response.status_code
+        response = make_response(jsonify(response_body))
+        
+        token = result.get("token")
+        if not token:
+            raise CustomAPIException("Token não gerado.", 500)
+
+        response.set_cookie(
+            key='auth_token',
+            value=str(token),
+            httponly=True,
+            secure=False,  # mudar para True em produção com HTTPS
+            samesite='Lax',
+            max_age=3600
+        )
+
+        return response
             
     except CustomAPIException as e:
             return e.to_dict(), e.status_code

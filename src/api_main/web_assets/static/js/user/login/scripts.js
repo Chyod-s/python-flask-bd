@@ -11,12 +11,13 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         const res = await fetch('/api/login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem('auth_token') || ''}`
             },
             body: JSON.stringify(data),
             credentials: 'include'  
         });
-
+    
         const responseData = await res.json();
         
         if (res.ok) {
@@ -30,7 +31,13 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
             }
 
             setTimeout(() => {
+                const token = sessionStorage.getItem('auth_token');
+                
+                console.log('Token:', token);
+
+                if (token) {
                 window.location.href = '/example';
+                }
             }, 1000);
         } else {
             msgEl.style.color = 'red';

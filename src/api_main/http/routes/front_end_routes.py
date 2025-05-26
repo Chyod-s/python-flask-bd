@@ -7,12 +7,6 @@ frontend_bp = Blueprint('frontend', __name__)
 
 @frontend_bp.route('/home')
 def home():
-    token = request.cookies.get('auth_token')
-    
-    if token and validate_token(token):
-        print("Token válido, redirecionando para dashboard")
-        return redirect(url_for('frontend.example'))
-    
     return render_template('pages/login.html')
 
 @frontend_bp.route('/logout')
