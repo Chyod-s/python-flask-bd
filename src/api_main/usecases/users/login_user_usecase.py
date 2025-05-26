@@ -24,13 +24,12 @@ class LoginUserUseCase():
         if not check_password(user.password,password):
             raise CustomAPIException("Senha inválida.", 422)
 
+        user_name = "".join(user.name) if user.name is not None else user.user_name
         token = generate_token(user.id) 
         csrf_token = get_csrf_token(token)
         
         User.att_updated_at(self.db, user)
-        
-        user_name = "".join(user.name) if user.name is not None else user.user_name
-        
+ 
         return {
             "user_name": user_name,
             "csrf_token": csrf_token,
