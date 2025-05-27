@@ -10,6 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-COPY src/api_main/entrypoint.sh /entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
-RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]
