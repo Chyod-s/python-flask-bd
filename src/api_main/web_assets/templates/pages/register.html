@@ -6,39 +6,32 @@ endblock %} {% block content %}
   </h2>
   <form id="register-form">
     <div class="mb-4">
+      <label for="name" class="block text-gray-700">Nome Completo:</label>
+      <input type="text" id="name" name="name" class="w-full p-2 border rounded" required/>
+    </div>
+
+    <div class="mb-4">
       <label for="username" class="block text-gray-700">Usuário:</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        class="w-full p-2 border rounded"
-        required
-      />
+      <input type="text" id="username" name="username" class="w-full p-2 border rounded" required/>
     </div>
     <div class="mb-4">
-      <label for="password" class="block text-gray-700">Senha:</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        class="w-full p-2 border rounded"
-        required
-      />
+      <label for="email" class="block text-gray-700">E-mail:</label>
+      <input type="text" id="email" name="email" class="w-full p-2 border rounded" required/>
     </div>
+
+    <div class="mb-4">
+      <label for="password" class="block text-gray-700">Senha:</label>
+      <input type="password" id="password" name="password" class="w-full p-2 border rounded" required/>
+    </div>
+
+    <div class="mb-4">
+      <label for="confirm-password" class="block text-gray-700">Confirme a Senha:</label>
+      <input type="password" id="confirm-password" name="confirm-password" class="w-full p-2 border rounded" required/>
+    </div>
+
     <div class="flex w-full gap-5">
-      <button
-        id="back-link"
-        type="button"
-        class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200"
-      >
-        Voltar
-      </button>
-      <button
-        type="submit"
-        class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200"
-      >
-        Cadastrar
-      </button>
+      <button id="back-link" type="button" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Voltar</button>
+      <button type="submit" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200"> Cadastrar </button>
     </div>
   </form>
   <p id="message" class="mt-4 text-center text-red-600"></p>
