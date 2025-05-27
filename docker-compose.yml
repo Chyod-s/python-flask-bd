@@ -15,7 +15,7 @@ services:
   api_main:
     build: .
     container_name: api_main
-    working_dir: /app/src/api_main
+    working_dir: /app/src
     command: /entrypoint.sh
     depends_on:
       - postgres
@@ -24,16 +24,6 @@ services:
       - DATABASE_URL=postgresql://mercatorio:123@postgres:5432/backendChallenge
     ports:
       - "5055:5055"
-
-  api_mock:
-    build: .
-    container_name: api_mock
-    working_dir: /app/src/api_mock
-    command: python -m src.api_mock.main
-    environment:
-      - PYTHONPATH=/app
-    ports:
-      - "5056:5055"
 
 volumes:
   pgdata:
