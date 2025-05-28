@@ -4,6 +4,7 @@ from logging.config import fileConfig
 from sqlalchemy import pool, create_engine
 from alembic import context
 from dotenv import load_dotenv
+from src.infraestructure.config.database import DATABASE_URL
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
@@ -17,14 +18,6 @@ if config.config_file_name is not None:
 from src.domain.models import Base
 
 target_metadata = Base.metadata
-
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data'))
-os.makedirs(BASE_DIR, exist_ok=True)  
-
-DB_PATH = os.path.join(BASE_DIR, 'db-test.db')
-DATABASE_URL = os.getenv("DATABASE_URL")
-
-
 
 def run_migrations_offline() -> None:
     """Executa as migrações no modo offline."""
