@@ -8,7 +8,7 @@
       "module": "flask",
       "cwd": "${workspaceFolder}",
       "env": {
-        "FLASK_APP": "src/api_main/main.py",  
+        "FLASK_APP": "src/main.py",  
         "FLASK_ENV": "development",
         "FLASK_DEBUG": "1",
         "PYTHONPATH": "${workspaceFolder}" 
@@ -21,9 +21,9 @@
       "type": "pwa-chrome",
       "request": "launch",
       "url": "http://127.0.0.1:5055",
-      "webRoot": "${workspaceFolder}/src/api_main/static",
+      "webRoot": "${workspaceFolder}/src/static",
       "pathMapping": {
-        "/static": "${workspaceFolder}/src/api_main/static"
+        "/static": "${workspaceFolder}/src/static"
       }
     }
   ]

@@ -14,4 +14,4 @@ cd /app
 
 alembic -c alembic.ini upgrade head
 
-gunicorn -c gunicorn_config.py src.api_main.main:app
+gunicorn -c gunicorn_config.py src.main:app
