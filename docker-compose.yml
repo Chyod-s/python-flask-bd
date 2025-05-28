@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres:15
     environment:
-      POSTGRES_USER: mercatorio
+      POSTGRES_USER: tonchyods
       POSTGRES_PASSWORD: 123
       POSTGRES_DB: backendChallenge
     volumes:
@@ -21,7 +21,7 @@ services:
       - postgres
     environment:
       - PYTHONPATH=/app
-      - DATABASE_URL=postgresql://mercatorio:123@postgres:5432/backendChallenge
+      - DATABASE_URL=postgresql://tonchyods:123@postgres:5432/backendChallenge
     ports:
       - "5055:5055"
 
