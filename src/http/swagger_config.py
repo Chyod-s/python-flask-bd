@@ -10,16 +10,12 @@ authorizations = {
 }
 
 api = Api(
-    title="API Precatory Creditor",
+    title="API Backend-Challenge",
     version="1.0",
-    description = (
-        "API para gestão de credores e documentos precatórios, incluindo cadastro, autenticação e emissão de certificados.\n"
-        "\n"
+    description=(
+        "API modelo para futuros projetos utilizando as mesmas tecnologias.\n\n"
         "Acesse o frontend: http://localhost:5055/home"
     ),
-    contact_email="hix_x@hotmail.com",
-    license="MIT",
-    license_url="https://opensource.org/licenses/MIT",
-    authorizations=authorizations,
-    security='jwt'
+    security='jwt',
+    authorizations=authorizations
 )
